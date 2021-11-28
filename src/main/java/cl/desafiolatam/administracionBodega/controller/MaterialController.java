@@ -32,9 +32,7 @@ public class MaterialController {
 
 	@PostMapping("/agregarMaterial")
 	public RedirectView home(HttpSession session, @ModelAttribute Material material, Model modelo) {		
-	//	if (session.getAttribute("materiales") != null) {
 			session.getAttribute("materiales");
-	//		materiales.addAll((List<Material>)session.getAttribute("materiales"));
 			material.setFechaIngreso(LocalDate.now());
 			materiales.add(material);
 			session.setAttribute("materiales", materiales);
