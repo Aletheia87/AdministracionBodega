@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<title>Administrador de Bodega</title>
+</head>
+<body>
+
+	<header>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">Administrador de Bodega</a>
+				<button class="navbar-toggler" type="button"
+					data-bs-toggle="collapse" data-bs-target="#navbarNav"
+					aria-controls="navbarNav" aria-expanded="false"
+					aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarNav">
+					<ul class="navbar-nav">
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#">Bodegas</a></li>
+						<li class="nav-item text-primary"><a class="nav-link" th:href="@{/logout}">Cerrar Sesión</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</header>
+
+	<section class="container">
+		<div class="col-sm-4">
+			<form th:action="@{agregarMaterial}" th:method="post" th:object="${material}">
+				<input class="form-control mt-3" type="text" th:name="precio"
+					th:placeholder="Precio">  
+				<input class="form-control mt-3" type="text" th:name="nombre"
+					th:placeholder="Nombre"> 
+				<input class="form-control mt-3" type="text" th:name="bodega.nombreBodega"
+					th:placeholder="Bodega">
+				<div class="col-md-8 text-start mx-3">
+					<button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Agregar</button>
+				</div>
+			</form>
+		</div>
+		<div class="col-sm-4"></div>
+		<div class="col-sm-4"></div>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Precio</th>
+					<th>Nombre</th>
+					<th>Bodega</th>
+					<th>Ingreso</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr  th:each="material: ${materiales}">
+					<td th:text="${material.precio}"></td>
+					<td th:text="${material.nombre}"></td>
+					<td th:text="${material.bodega.nombreBodega}"></td>
+					<td th:text="${material.fechaIngreso}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+
+</body>
+</html>
